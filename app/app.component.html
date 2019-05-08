@@ -1,0 +1,39 @@
+<div class="main-container">
+    <header class="header-2">
+      <div class="branding">
+          <a class="nav-link">
+              <clr-icon shape="home"  size="24"></clr-icon>
+              <span class="title">Project Clarity</span>
+          </a>
+      </div>
+      <div class="header-nav">
+          <a class="active nav-link nav-text">Home</a>
+      </div>
+  </header>
+    <div class="content-container">
+        <div class="content-area">
+            <button class="btn btn-primary" (click)="clear()">Clear Filters</button>
+            <clr-datagrid>
+              <clr-dg-column>User ID</clr-dg-column>
+              <clr-dg-column clrDgField="name">Name</clr-dg-column>
+              <clr-dg-column clrDgField="creation">Creation date</clr-dg-column>
+              <clr-dg-column clrDgField="pokemon.name">Pokemon</clr-dg-column>
+              <clr-dg-column clrDgField="color">Favorite color</clr-dg-column>
+
+              <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+                  <clr-dg-cell>{{user.id}}</clr-dg-cell>
+                  <clr-dg-cell>{{user.name}}</clr-dg-cell>
+                  <clr-dg-cell>{{user.creation | date}}</clr-dg-cell>
+                  <clr-dg-cell>{{user.pokemon.name}}</clr-dg-cell>
+                  <clr-dg-cell>{{user.color}}</clr-dg-cell>
+              </clr-dg-row>
+
+              <clr-dg-footer>
+                  {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                  of {{pagination.totalItems}} users
+                  <clr-dg-pagination #pagination></clr-dg-pagination>
+              </clr-dg-footer>
+          </clr-datagrid>
+        </div>
+    </div>
+</div>
